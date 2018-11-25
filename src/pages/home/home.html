@@ -1,14 +1,34 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="primary">
+
+    <ion-title style="font-family: 'Prompt', sans-serif">รายการจองสนาม</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let reserve of reserveList | async">
+      <ion-item >
+        <p><strong>Email user: </strong>{{reserve.email}}</p>
+        <p><strong>Stadium: </strong>{{reserve.stadium}}</p>
+        <p><strong>Date: </strong>{{reserve.date}}</p>
+        <p><strong>Time: </strong>{{reserve.time}}</p>
+        <p><strong>price: </strong>{{reserve.price}}</p>
+        <p><strong>Status: </strong>{{reserve.status}}</p>
+      </ion-item>
+      <div>
+        <button ion-button small  (click)="confirmBtn(reserve.$key)">ยืนยันการจองสนาม</button>
+        <button ion-button small color="danger" (click)="removeBtn(reserve.$key)">ลบการจองสนาม</button>
+        
+      </div>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+
+<style>
+  ion-content {
+    font-family: 'Prompt', sans-serif;
+  }
+
+</style>
